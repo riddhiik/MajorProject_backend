@@ -26,12 +26,11 @@ def custom_openapi():
     if app.openapi_schema:
         return app.openapi_schema
     openapi_schema = get_openapi(
-        title="Dashboard for Baramati",
+        title="APIs for Therapeutic Tool For ADHD",
         version="0.1.0",
-        description="Map My Crop's Baramati Dashboard 🌾",
+        description="A Virtual Reality Therapeutic Tool For ADHD",
         routes=app.routes,
         servers=[{"url": setting.SERVER}] if setting.SERVER != "" else [],
-        # servers=[{"url": "https://farm.mapmycrop.com/"}]
     )
     openapi_schema["info"]["x-logo"] = {
         "url": "https://mapmycrop.store/images/logo.png"
