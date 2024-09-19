@@ -5,10 +5,10 @@ const pool = require('../db'); // Import database connection
 // Registration Route
 router.post('/register', async (req, res) => {
   const { kid_name, gender, age, dob, parent_name, email, password, phone_number } = req.body;
-  
+
   try {
     const newUser = await pool.query(
-      `INSERT INTO users (kid_name, gender, age, dob, parent_name, email, password, phone_number)
+      `INSERT INTO users (name, gender, age, dob, parent_name, email, password, phone_number)
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
       [kid_name, gender, age, dob, parent_name, email, password, phone_number]
     );
@@ -20,17 +20,17 @@ router.post('/register', async (req, res) => {
 });
 
 // Sign-in Route
-router.post('/signin', async (req, res) => {
+router.post('/login', async (req, res) => {
   const { email, password } = req.body;
-  
+
   try {
     const user = await pool.query(
       'SELECT * FROM users WHERE email = $1 AND password = $2',
       [email, password]
     );
-    
+
     if (user.rows.length > 0) {
-      res.status(200).json({ message: 'Sign-in successful', user: user.rows[0] });
+      res.status(200).json({ message: 'log-in successful', user: user.rows[0] });
     } else {
       res.status(401).send('Invalid credentials');
     }
