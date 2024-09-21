@@ -1,12 +1,13 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
+from routers import auth
 from db import get_db, data_get_db
 from fastapi.openapi.utils import get_openapi
 from fastapi.middleware.cors import CORSMiddleware
 from config import setting
 
 app = FastAPI(
-    title="Automatic Farm Boundary Delineation APIs ",
+    title="Therapeutic Tool For ADHD APIs ",
     docs_url="/",
     description="Product by Map My Crop",
     version="0.0.1",
@@ -42,3 +43,9 @@ def custom_openapi():
 app.openapi = custom_openapi
 
 # add multiple routers here ->
+app.include_router(auth.route)
+
+
+@app.get("/")
+def home():
+    return {"data": "at home"}

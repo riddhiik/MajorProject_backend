@@ -11,21 +11,7 @@ class Settings(BaseSettings):
     db_pwd: str
     db_usr: str
     port: str
-    
-    # JWT Token Related
-    SECRET_KEY: str
-    REFRESH_SECRET_KEY : str
-    ALGORITHM: str
-    TIMEOUT: int
-
-    # internal env
-    ADMINAPIKEY: str
-    DIGIFARMKEY: str
-
     SERVER: str
-    REDIS_HOST: str
-    REDIS_PORT:  str
-    SENDINBLUE_KEY: str
 
     class Config:
         env_file = Path(Path(__file__).resolve().parent) / ".env"
